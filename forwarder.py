@@ -42,11 +42,9 @@ class Queue:
         self.lock.acquire()
         self.queue.append(data)
         self.lock.release()
-        print("releasing the semaphore")
         self.semaphore.release()
 
     def pop(self, k=0):
-        print("acquiring the semaphore")
         self.semaphore.acquire()
         self.lock.acquire()
         res = self.queue.pop(k)
