@@ -1,0 +1,21 @@
+{
+  "traceFilePath": "trace/NEW_2016031907-LUN1.csv",
+  "traceDil": ",",
+  "indicesCnt": 4,
+  "timeInd": 0,
+  "RWInd": 1,
+  "rSym": "R",
+  "wSym": "W",
+  "addrInd": 2,
+  "sizeInd": 3,
+  "blkSize": 4096,
+  "minReqLen": 512,
+  "ssdCapacity": 102400,
+  "ramCapacity": 10240,
+  "storageCapacity": 21474828288,
+  "storageDevice": "/dev/sda99",
+  "maxAddr": 72831761920,
+  "delayFactor": 5,
+  "ssdUpdateInterval": 5000,
+  "promotionTsh": 2
+}

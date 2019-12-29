@@ -1,6 +1,10 @@
+from json import loads as jsn_ld
+from collections import namedtuple
+
+
 class ReqCnf:
-    read = 0
-    write = 1
+    read = 'R'
+    write = 'W'
 
 
 class FwdCnf:
@@ -36,3 +40,7 @@ class CacheConf:
             return CacheConf.HDD
         else:
             raise Exception("Unknown device type!")
+
+
+jsn_file = open("parser_configuration.json", 'r').read()
+parser_conf = jsn_ld(jsn_file, object_hook=lambda d: namedtuple('configuration', d.keys())(*d.values()))
