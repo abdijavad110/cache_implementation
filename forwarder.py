@@ -76,12 +76,12 @@ class Forwarder:
             start = time()
 
             if req.type == ReqCnf.read:
-                dd = open(req.dest, 'rb')
+                dd = open(req.dest, 'rb', buffering=0)
                 dd.seek(req.addr)
                 res = dd.read(req.len)
                 req.load_data(res)
             else:
-                dd = open(req.dest, 'wb')
+                dd = open(req.dest, 'wb', buffering=0)
                 dd.seek(req.addr)
                 dd.write(req.data)
             dd.close()
