@@ -56,7 +56,7 @@ class Queue:
 
 
 class Forwarder:
-    def __init__(self):
+    def __init__(self, concurrency=1):
         """
         req_Q accepts up to FwdCnf.req_q_max requests
         pay attention to free res_Q, if len exceed FwdCnf.res_q_max then deadlock will happen
@@ -64,8 +64,11 @@ class Forwarder:
         self.req_Q = Queue(FwdCnf.req_q_max, zero_out=True)
         self.res_Q = Queue(FwdCnf.res_q_max)
 
-        self.fwd_trd = threading.Thread(target=self.forward_service, daemon=True)
-        self.fwd_trd.start()
+        self.fwd_trd = []
+        for _ in range(concurrency):
+            self.fwd_trd.append(threading.Thread(target=self.forward_service, daemon=True))
+        for trd in self.fwd_trd:
+            trd.start()
 
     def issue(self, req):
         self.req_Q.append(req)

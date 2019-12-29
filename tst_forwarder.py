@@ -8,7 +8,7 @@ from forwarder import Forwarder, Request
 class MyTestCase(unittest.TestCase):
     def test_something(self):
         try:
-            ff = Forwarder()
+            ff = Forwarder(concurrency=10)
 
             for _ in range(2000):
                 ff.issue(
